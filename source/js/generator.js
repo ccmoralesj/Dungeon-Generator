@@ -28,8 +28,8 @@ function erasePixel(x,y){
 function isRect(x,y){
 	if( x < 0 || x > canvas.width || y < 0 || y > canvas.height) return false;
 	var rect = rectangles.filter(function(rect){ return (rect["x"] === x && rect["y"] === y); });
-	if(rect.length) return true;
-	return false;
+
+    return (rect.length)? true : false;
 }
 
 function mayorityRule(x,y){
