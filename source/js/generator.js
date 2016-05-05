@@ -26,7 +26,7 @@ function erasePixel(x,y){
 }
 
 function isRect(x,y){
-	if( x < 0 || x > canvas.width || y < 0 || y > canvas.height) return false;
+	if( x < 0 || x > canvas.width || y < 0 || y > canvas.height) return true;
 	var rect = rectangles.filter(function(rect){ return (rect["x"] === x && rect["y"] === y); });
 
     return (rect.length)? true : false;
