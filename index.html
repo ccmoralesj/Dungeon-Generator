@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Hello World!</title>
+<meta charset="UTF-8">
+<title>Generacion de terrenos</title>
 </head>
 <body>
-<h1>Hello World!</h1>
-We are using node.js <script>document.write(process.version)</script>.
+<canvas id="field" height="500" width="1000"></canvas>
+<button onclick="emptyGrid()">Clear</button>
+<button onclick="randomBase()">Random Base</button>
+<button onclick="step()">Step</button>
+<button onclick="run()">Run</button>
 </body>
+<script type="text/javascript" src="source/js/generator.js"></script>
 </html>
