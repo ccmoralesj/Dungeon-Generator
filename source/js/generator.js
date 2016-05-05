@@ -1,16 +1,14 @@
-var canvas = document.getElementById("field");
-var context = canvas.getContext("2d");
-var pixel = 10;
+const canvas = document.getElementById("field");
+const context = canvas.getContext("2d");
+const pixel = 20;
 var rectangles = [];
 
 function alivePixel(x,y){
-	saveRect(x,y);
 	context.fillRect(x,y,pixel,pixel);
 	context.stroke();
 }
 
 function deathPixel(x,y){
-	rectangles = rectangles.filter(function(rect){ return !(rect["x"] === x && rect["y"] === y); });
 	context.fillStyle="white";
 	context.fillRect(x,y,pixel,pixel);
 	context.stroke();
@@ -20,6 +18,11 @@ function deathPixel(x,y){
 
 function saveRect(x,y){
 	rectangles.push({x:x,y:y});
+}
+
+function erasePixel(x,y){
+    "use strict";
+    rectangles = rectangles.filter(function(rect){ return !(rect["x"] === x && rect["y"] === y); });
 }
 
 function isRect(x,y){
@@ -37,12 +40,12 @@ function mayorityRule(x,y){
 function emptyGrid(){
 	rectangles = [];
 	context.clearRect(0, 0, canvas.width, canvas.height);
-	for (var x = 0; x <= canvas.width; x += pixel) {
+	for (let x = 0; x <= canvas.width; x += pixel) {
 		context.moveTo(x, 0);
 		context.lineTo(x,canvas.height);
 	}
 
-	for (var y = 0; y <= canvas.height; y += pixel) {
+	for (let y = 0; y <= canvas.height; y += pixel) {
 	  context.moveTo(0, y);
 	  context.lineTo(canvas.width,y);
 	}
@@ -53,28 +56,29 @@ function emptyGrid(){
 
 function randomBase(){
 	emptyGrid();
-	var RN;
+	let RN;
 	rectangles = [];
-	for(var i = 0; i <= canvas.height ; i+= pixel){
-		for(var j = 0; j <= canvas.width ; j += pixel){
+	for(let i = 0; i <= canvas.height ; i+= pixel){
+		for(let j = 0; j <= canvas.width ; j += pixel){
 			RN = Math.random();
 			//console.log("here");
 			if(RN >= 0.5){
-				alivePixel(j,i);
+				saveRect(j,i);
+                alivePixel(j,i);
 			}
 		}
 	}
 }
 
 function step(){
-	for(var i = 0; i <= canvas.height ; i+= pixel){
-		for(var j = 0; j <= canvas.width ; j += pixel){
-			var mayority = mayorityRule(j,i);
+	for(let i = 0; i <= canvas.height ; i+= pixel){
+		for(let j = 0; j <= canvas.width ; j += pixel){
+			let mayority = mayorityRule(j,i);
 			if(mayority <= 4){
-				deathPixel(j,i);
+				erasePixel(j,i);
 			}else{
 				if(!isRect(j,i))
-					alivePixel(j,i);
+					saveRect(j,i);
 			}
 		}
 	}
@@ -83,10 +87,23 @@ function step(){
 function run(){
 	var rectsInGrid = 0;
 	while(rectsInGrid !== rectangles.length){
-		//console.log(rectsInGrid,"!=",rectangles.length);
+		console.log(rectsInGrid,"!=",rectangles.length);
 		rectsInGrid = rectangles.length;
 		step();
 	}
+    drawDungeon();
+}
+
+function drawDungeon(){
+    "use strict";
+    for(let i = 0; i <= canvas.height ; i+= pixel){
+        for(let j = 0; j <= canvas.width ; j += pixel){
+            if(isRect(j,i))
+                alivePixel(j,i);
+            else
+                deathPixel(j,i);
+        }
+    }
 }
 
 emptyGrid();
