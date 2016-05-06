@@ -40,22 +40,9 @@ function mayorityRule(x,y){
 function emptyGrid(){
 	rectangles = [];
 	context.clearRect(0, 0, canvas.width, canvas.height);
-	for (let x = 0; x <= canvas.width; x += pixel) {
-		context.moveTo(x, 0);
-		context.lineTo(x,canvas.height);
-	}
-
-	for (let y = 0; y <= canvas.height; y += pixel) {
-	  context.moveTo(0, y);
-	  context.lineTo(canvas.width,y);
-	}
-	
-	context.strokeStyle = "#BEBEBE";
-	context.stroke();
 }
 
 function randomBase(){
-	emptyGrid();
 	let RN;
 	rectangles = [];
 	for(let i = 0; i <= canvas.height ; i+= pixel){
@@ -86,7 +73,6 @@ function step(){
 
 function run(){
 	let diff,rectsInGrid = 0;
-    //diff = Math.abs(rectsInGrid - rectangles.length);
     diff = 0;
 	while(rectsInGrid !== rectangles.length){
 		rectsInGrid = rectangles.length;
@@ -111,5 +97,3 @@ function drawDungeon(){
         }
     }
 }
-
-emptyGrid();
