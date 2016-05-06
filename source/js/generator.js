@@ -1,6 +1,6 @@
 const canvas = document.getElementById("field");
 const context = canvas.getContext("2d");
-const pixel = 20;
+const pixel = 10;
 var rectangles = [];
 
 function alivePixel(x,y){
@@ -85,12 +85,18 @@ function step(){
 }
 
 function run(){
-	var rectsInGrid = 0;
+	let diff,rectsInGrid = 0;
+    //diff = Math.abs(rectsInGrid - rectangles.length);
+    diff = 0;
 	while(rectsInGrid !== rectangles.length){
-		console.log(rectsInGrid,"!=",rectangles.length);
 		rectsInGrid = rectangles.length;
 		step();
-	}
+        diff = Math.abs(rectsInGrid - rectangles.length);
+        console.log(rectsInGrid,"!=",rectangles.length, diff, (100 - (diff/rectangles.length) * 100) +"%");
+
+    }
+    console.log(rectsInGrid,"!=",rectangles.length, diff);
+
     drawDungeon();
 }
 
