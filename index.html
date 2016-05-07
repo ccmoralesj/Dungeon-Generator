@@ -2,13 +2,29 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Generacion de terrenos</title>
+    <link rel="stylesheet" type="text/css" href="source/stylesheet/main_page.css">
+    <title>Generacion de terrenos</title>
 </head>
 <body>
-<canvas id="field" height="500" width="500"></canvas>
-<button onclick="emptyGrid()">Clear</button>
-<button onclick="randomBase()">Random Base</button>
-<button onclick="run()">Run</button>
+    <section class="container">
+        <div class="row">
+            <div class="col l12 m12 s12 center">
+                <canvas id="field" height="500" width="500"></canvas>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col l12 m12 s12 progress">
+                <div id="percentage_bar" class="determinate"></div>
+            </div>
+            <button class="col l4 m4 s4" onclick="emptyGrid()">Clear</button>
+            <button class="col l4 m4 s4" onclick="randomBase()">Random Base</button>
+            <button class="col l4 m4 s4" onclick="run()">Run</button>
+            <button class="col l12 m12 s12" onclick="Dungeon.initDungeon()">Random Base</button>
+        </div>
+    </section>
 </body>
+
 <script type="text/javascript" src="source/js/generator.js"></script>
+<script type="text/javascript" src="source/js/dungeon.js"></script>
+
 </html>
