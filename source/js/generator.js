@@ -1,8 +1,3 @@
-const canvas = document.getElementById("field");
-const canvas_width = canvas.width;
-const canvas_height = canvas.height;
-const context = canvas.getContext("2d");
-const pixel = 15;
 var rectangles = [];
 
 function alivePixel(x,y){
@@ -43,6 +38,20 @@ function emptyGrid(){
 	rectangles = [];
 	context.clearRect(0, 0, canvas_width, canvas_height);
     setPercentage(0);
+
+    context.strokeStyle = "#E1F5FE"; // Light blue
+    //context.strokeStyle = "#EFEBE9"; // Light brown
+    for (let x = 0; x <= canvas.width; x += pixel) {
+		context.moveTo(x, 0);
+		context.lineTo(x,canvas.height);
+	}
+
+	for (let y = 0; y <= canvas.height; y += pixel) {
+		context.moveTo(0, y);
+		context.lineTo(canvas.width,y);
+	}
+
+	context.stroke();
 }
 
 function randomBase(){
