@@ -2,7 +2,7 @@ const canvas = document.getElementById("field");
 const canvas_width = canvas.width;
 const canvas_height = canvas.height;
 const context = canvas.getContext("2d");
-const pixel = 10;
+const pixel = 15;
 var rectangles = [];
 
 function alivePixel(x,y){

@@ -15,6 +15,8 @@ class Dungeon {
     }
 
     static alivePixel(x, y) {
+        context.fillStyle = "#01579B"; // Dark Blue
+        //context.fillStyle = "#3E2723"; // Dark Brown
         context.fillRect(x, y, pixel, pixel);
         context.stroke();
     }

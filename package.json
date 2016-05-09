@@ -4,10 +4,8 @@
   "description": "This is a dungeon generator based in nodejs and node webkit",
   "main": "index.html",
   "window": {
-    "width": 800,
-    "height": 600,
-    "min_height": 425,
-    "min_width": 361
+    "width": 1120,
+    "height": 700
   },
   "scripts": {
     "start": "nw",
