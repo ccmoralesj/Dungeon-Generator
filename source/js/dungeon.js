@@ -6,7 +6,8 @@ const canvas_width = canvas.width;
 const canvas_height = canvas.height;
 const context = canvas.getContext("2d");
 const pixel = 15;
-const FPS = 1000/1000;
+//const FPS = 1000/1000;
+const FPS = 1/60;
 var dungeon;
 
 class Dungeon {
@@ -107,6 +108,7 @@ class Dungeon {
 
     static setPercentage(percentage){
         "use strict";
+        let per = (percentage == 0)? 0 : (percentage < 88)? 40:(percentage-88)*(100/12);
         let percentageBar = document.getElementById("percentage_bar");
         let percentageNum = document.getElementById("percentage_num");
         percentageBar.style.width = percentage + "%";
